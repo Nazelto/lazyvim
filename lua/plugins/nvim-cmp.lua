@@ -26,7 +26,6 @@ return {
           scrollbar = false,
         }),
       }
-
       -- ✅ 主编辑器窗口样式
       opts.window = window_config
 

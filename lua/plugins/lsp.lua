@@ -9,6 +9,9 @@ return {
       codelens = {
         enabled = true,
       },
+      servers = {
+        taplo = { enabled = false },
+      },
     },
     init = function()
       -- 设置 inlay hints 背景透明
