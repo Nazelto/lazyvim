@@ -8,18 +8,18 @@ return {
     },
   },
   {
-    "aymenhafeez/doric-themes.nvim",
-    opts = {
-      flavour = "water",
-    },
-  },
-  {
-    "rebelot/kanagawa.nvim",
+    "navarasu/onedark.nvim",
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("onedark").setup({
+        style = "cool",
+      })
+    end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-storm",
+      colorscheme = "tokyonight-moon",
     },
   },
 }

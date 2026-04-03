@@ -2,6 +2,9 @@ return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
+      opts.statuscolumn = {
+        enabled = false,
+      }
       opts.styles = opts.styles or {}
 
       opts.styles.float = vim.tbl_deep_extend("force", opts.styles.float or {}, {
