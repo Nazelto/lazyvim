@@ -1,6 +1,20 @@
 -- lua/plugins/lsp.lua
 return {
   {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+
+      opts.ensure_installed = vim.tbl_filter(function(pkg)
+        return pkg ~= "haskell-language-server"
+      end, opts.ensure_installed)
+
+      if not vim.tbl_contains(opts.ensure_installed, "haskell-debug-adapter") then
+        table.insert(opts.ensure_installed, "haskell-debug-adapter")
+      end
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = {
@@ -12,9 +26,13 @@ return {
       servers = {
         taplo = { enabled = false },
       },
+      setup = {
+        hls = function()
+          return true
+        end,
+      },
     },
     init = function()
-      -- 设置 inlay hints 背景透明
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
         callback = function()
@@ -25,7 +43,7 @@ return {
           })
         end,
       })
-      -- 立即应用（针对当前 colorscheme）
+
       vim.api.nvim_set_hl(0, "LspInlayHint", {
         fg = "#7f849c",
         bg = "NONE",

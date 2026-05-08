@@ -3,7 +3,9 @@ return {
     "saghen/blink.cmp",
     opts = function(_, opts)
       opts = opts or {}
-
+      opts.snippets = vim.tbl_deep_extend("force", opts.snippets or {}, {
+        preset = "luasnip",
+      })
       opts.completion = vim.tbl_deep_extend("force", opts.completion or {}, {
         list = {
           selection = {
